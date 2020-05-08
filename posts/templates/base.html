@@ -42,7 +42,7 @@
             <ul class="list-unstyled list-inline text-center h5 font-weight-bold">
             {% for category in categories %}
                 <li class="list-inline-item">
-                    <a href="{% url 'posts:category' name=category.name %}">{{ category.name }}</a>
+                    <a href="{% url 'posts:categoria' name=categoria.name %}">{{ categoria.name }}</a>
                 </li>
             {% endfor %}
             </ul>

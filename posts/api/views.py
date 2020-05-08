@@ -23,7 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
     lookup_field = "slug"
 
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ["category__name", "author__username", "title", "content"]
+    search_fields = ["categoria__name", "author__username", "title", "content"]
 
     # pagination_class = PostPageNumberPagination # works fine
 

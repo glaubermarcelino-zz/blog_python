@@ -2,20 +2,20 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
-from posts.models import Post, Category
+from posts.models import Post, Categoria
 
 
 # model listings
-class CategoryListingField(serializers.RelatedField):
+class CategoriaListingField(serializers.RelatedField):
     def to_representation(self, value):
         return f"{value.name}"
 
     def to_internal_value(self, value):
-        obj = Category.objects.filter(name=value)
+        obj = Categoria.objects.filter(name=value)
         if obj and (len(obj)) == 1:
             return obj.get().id
         else:
-            raise ValidationError(f"Category with name {value} does not exist")
+            raise ValidationError(f"Categoria with name {value} does not exist")
 
 
 class AuthorListingField(serializers.RelatedField):
@@ -33,9 +33,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("username",)
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = Categoria
         fields = ("name",)
 
 
@@ -56,7 +56,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         view_name="post-detail", lookup_field="slug"
     )
     author = AuthorListingField(queryset=User.objects.all())
-    category = CategoryListingField(queryset=Category.objects.all(), many=True)
+    categoria = CategoriaListingField(queryset=Categoria.objects.all(), many=True)
     published_date = serializers.DateTimeField(format="%a, %d %b  %I:%M %p")
 
     class Meta:
@@ -64,7 +64,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         fields = (
             "url",
             "title",
-            "category",
+            "categoria",
             "content",
             "published_date",
             "author",
@@ -77,7 +77,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         view_name="post-detail", lookup_field="slug"
     )
     author = serializers.HiddenField(default=CurrentUserDefault())
-    category = CategoryListingField(queryset=Category.objects.all(), many=True)
+    categoria = CategoriaListingField(queryset=Categoria.objects.all(), many=True)
     published_date = serializers.DateTimeField(
         format="%a, %d %b  %I:%M %p", read_only=True
     )
@@ -87,7 +87,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         fields = (
             "url",
             "title",
-            "category",
+            "categoria",
             "content",
             "published_date",
             "author",
@@ -97,24 +97,24 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         title = validated_data.get("title", "")
         validated_data["slug"] = slugify(title)
-        # pops out the list of categories
-        categories = validated_data.pop("category")
+        # pops out the list of categorias
+        categorias = validated_data.pop("categoria")
         # and saves the rest of the data
         post = Post.objects.create(**validated_data)
-        # add categories separately
-        for category in categories:
-            post.category.add(category)
+        # add categorias separately
+        for categoria in categorias:
+            post.categoria.add(categoria)
         return post
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get("title", instance.title)
         instance.slug = slugify(instance.title)
 
-        categories = validated_data.get("category")
+        categorias = validated_data.get("categoria")
         # deassociate existing categories from instance
-        instance.category.clear()
-        for category in categories:
-            instance.category.add(category)
+        instance.categoria.clear()
+        for categoria in categorias:
+            instance.categoria.add(categoria)
 
         instance.author = self.context.get("request").user
         instance.content = validated_data.get("content", instance.content)

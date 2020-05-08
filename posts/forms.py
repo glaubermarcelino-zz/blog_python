@@ -2,7 +2,7 @@ from django import forms
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
 from django.core.exceptions import ValidationError
-from .models import Category, Post
+from .models import Categoria, Post
 from taggit.forms import TagWidget
 
 
@@ -32,7 +32,7 @@ class AddPostForm(forms.ModelForm):
                     "class": "form-control",
                 }
             ),
-            "category": forms.SelectMultiple(
+            "categoria": forms.SelectMultiple(
                 attrs={"required": True, "class": "form-control"}
             ),
             "status": forms.Select(attrs={"class": "form-control"}),
