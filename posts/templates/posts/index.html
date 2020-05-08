@@ -30,11 +30,11 @@
     </div>
 
     <div class="col-md-6 text-right">
-      <b>Categories:</b> &nbsp; 
-      {% for category in post.category.all %} 
+      <b>Categorias:</b> &nbsp;
+      {% for categoria in post.categoria.all %}
       {% if not forloop.first %}/ {% endif %}
-      <a href="{% url 'posts:category' name=category.name %}">
-        {{ category.name }}
+      <a href="{% url 'posts:categoria' name=categoria.name %}">
+        {{ categoria.name }}
       </a>
       {% endfor %}
     </div>
