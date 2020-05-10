@@ -15,13 +15,13 @@
   <div class="row">
     <div class="col-md-6">
       <p>
-        Posted on &nbsp;<b>{{ post.published_date|date:"F j, Y" }}</b>&nbsp; by &nbsp;
+        Postado em &nbsp;<b>{{ post.published_date|date:"F j, Y" }}</b>&nbsp; by &nbsp;
         <b>
-          <a href="{% url 'posts:author' author=post.author.username %}">{{ post.author.username.capitalize }}</a>
+          <a href="{% url 'posts:autor' autor=post.autor.username %}">{{ post.autor.username.capitalize }}</a>
         </b>
         |
         <a href="{% url 'posts:details_post' slug=post.slug %}">
-          Comments (<span
+          Comentários (<span
               class="fb-comments-count"
               data-href="{{ request.build_absolute_uri }}/{{ post.slug }}/"
             ></span>)
@@ -30,11 +30,11 @@
     </div>
 
     <div class="col-md-6 text-right">
-      <b>Categories:</b> &nbsp; 
-      {% for category in post.category.all %} 
+      <b>Categorias:</b> &nbsp;
+      {% for categoria in post.categoria.all %}
       {% if not forloop.first %}/ {% endif %}
-      <a href="{% url 'posts:category' name=category.name %}">
-        {{ category.name }}
+      <a href="{% url 'posts:categoria' name=categoria.name %}">
+        {{ categoria.name }}
       </a>
       {% endfor %}
     </div>
@@ -42,14 +42,14 @@
   <div class="w-100">
     <!-- shorten + markdown -->
     {{ post.content | shorten_post }}
-    <a href="{% url 'posts:details_post' slug=post.slug %}"> Read more</a>
+    <a href="{% url 'posts:details_post' slug=post.slug %}"> Leia mais</a>
   </div>
 </div>
 <hr />
 {% endif %} 
 
 {% empty %}
-<p>No posts.</p>
+<p>Sem postagens.</p>
 {% endfor %}
 <!-- PAGINATION -->
 {% include 'posts/pagination.html' %}

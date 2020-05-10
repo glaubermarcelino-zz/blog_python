@@ -9,15 +9,13 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "BlogDjango",  # postgres db name
-        "USER": "kamil",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "",
+'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.BlogDjango'),
     }
 }
+
+
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "admin@localhost"

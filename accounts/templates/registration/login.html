@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %} Sign In {% endblock %}
+{% block title %} Entrar {% endblock %}
 
 {% block content %}
 <div class="p-4 text-center m-auto w-75">
-    <h3>Sign In </h3>
+    <h3>Login </h3>
     <hr>
     {% if form.errors %}
         <small class="p-1 mb-3 text-center text-white bg-danger">
-            Your username and password didn't match. Please try again.
+            Seu usuário ou senha não encontrado. Por favor tente novamente.
         </small>
     {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
+            <p>Sua conta não possui acesso a esta página. Para processir,
+            entre com um login que possua acesso.</p>
         {% endif %}
     {% endif %}
 
@@ -33,12 +33,12 @@
                 {{ form.password }}
             </div>
         </div>
-        <button class="btn btn-primary" type="Login">Sign In <i class="fas fa-sign-in-alt"></i></button>
+        <button class="btn btn-primary" type="Login">Login <i class="fas fa-sign-in-alt"></i></button>
     </form>
     <div class="text-center mt-4">
-        <a href="{% url 'accounts:password_reset' %}">Forgot your password?</a>
+        <a href="{% url 'accounts:password_reset' %}">Esqueci minha senha?</a>
         <br>
-        <a href="{% url 'accounts:signup' %}">Register new account</a>
+        <a href="{% url 'accounts:signup' %}">Criar uma nova conta</a>
     </div>
 </div>
 {% endblock %}

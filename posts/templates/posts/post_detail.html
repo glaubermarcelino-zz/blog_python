@@ -10,15 +10,15 @@
     <div class="row">
         <div class="col-md-6">
             <p>
-                Posted on &nbsp;<b>{{ post.published_date|date:"F j, Y" }}</b>&nbsp; by &nbsp;<b><a href="{% url 'posts:author' author=post.author.username %}">{{ post.author.username.capitalize }}</a></b>
+                Postado em&nbsp;<b>{{ post.published_date|date:"F j, Y" }}</b>&nbsp; por &nbsp;<b><a href="{% url 'posts:autor' autor=post.autor.username %}">{{ post.autor.username.capitalize }}</a></b>
             </p>
         </div>
 
         <div class="col-md-6 text-right">
-            <b>Categories:</b> &nbsp;
-            {% for category in post.category.all %}
+            <b>Categorias:</b> &nbsp;
+            {% for categoria in post.categoria.all %}
                 {% if not forloop.first %}/ {% endif %}
-                <a href="{% url 'posts:category' name=category.name %}">{{ category.name }}</a>
+                <a href="{% url 'posts:categoria' name=categoria.name %}">{{ categoria.name }}</a>
             {% endfor %}
         </div>
     </div>
@@ -49,14 +49,14 @@
         </div> -->
 
         <!-- Post actions for authenticated users -->
-        {% if user.is_authenticated and post.author.username == request.user.username %}
+        {% if user.is_authenticated and post.autor.username == request.user.username %}
             <div>
-                <b>Author actions:</b>&nbsp;
-                <!-- Amend post for authenticated author -->
-                <a href="{% url 'posts:update_post' slug=post.slug %}">Update</a>
+                <b>Ações do autor:</b>&nbsp;
+                <!-- Amend post for authenticated autor -->
+                <a href="{% url 'posts:update_post' slug=post.slug %}">Atualizar</a>
                 |
-                <!-- Delete post for authenticated author -->
-                <a href="{% url 'posts:delete_post' slug=post.slug %}">Delete</a>
+                <!-- Delete post for authenticated autor -->
+                <a href="{% url 'posts:delete_post' slug=post.slug %}">Remover</a>
             </div>
         {% endif %}     
     </div>
@@ -64,10 +64,10 @@
     {% if post.allow_comments == True %}
         <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="3" width="100%"></div>
     {% else %}
-        <p><b>Comments are disabled for this post.</b></p>
+        <p><b>Comentários foram desabilitados para esta postagem.</b></p>
     {% endif %}
 </div>
 {% else %}
-<p>No such post.</p>
+<p>Nenhuma postagem desse tipo.</p>
 {% endif %}
 {% endblock %}

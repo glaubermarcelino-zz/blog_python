@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} Your profile {% endblock %}
+{% block title %} Ser PErfil {% endblock %}
 
 {% block content %}
 <div class="card p-4 text-center m-auto">
-	<h3>Edit your profile</h3>
+	<h3>Editar Perfil</h3>
 	<hr>
 	<form method="post">
 		{% csrf_token %}
@@ -24,7 +24,7 @@
 			</div>
 		{% endfor %}
 		</div>
-		<button class="btn btn-primary" type="submit">Submit</button>
+		<button class="btn btn-primary" type="submit">Gravar</button>
 	</form>
 </div>
 {% endblock %}

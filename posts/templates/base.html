@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 {% load static %}
 {% load taggit_templatetags2_tags %}
 {% load filters %}
 
-<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -37,12 +37,12 @@
         </header>
 
         {% block nav-content %}
-        {% if categories %}
+        {% if categorias %}
         <div class="container my-4">
             <ul class="list-unstyled list-inline text-center h5 font-weight-bold">
-            {% for category in categories %}
+            {% for categoria in categorias %}
                 <li class="list-inline-item">
-                    <a href="{% url 'posts:category' name=category.name %}">{{ category.name }}</a>
+                    <a href="{% url 'posts:categoria' name=categoria.name %}">{{ categoria.name }}</a>
                 </li>
             {% endfor %}
             </ul>
@@ -59,10 +59,10 @@
         <div class="container my-4">
             <hr>
             <ul class="list-unstyled list-inline text-center font-weight-bold">
-                <li class="list-inline-item">Editor's Panel:</li>
-                <li class="list-inline-item"><a href="{% url 'posts:add_post' %}">New post</a></li>
-                <li class="list-inline-item"><a href="{% url 'posts:list_drafts' %}">Your drafts</a></li>
-                <li class="list-inline-item"><a href="{% url 'posts:author' author=user.username %}">Your posts</a></li>
+                <li class="list-inline-item">Editor do Painel:</li>
+                <li class="list-inline-item"><a href="{% url 'posts:add_post' %}">Nova postagemt</a></li>
+                <li class="list-inline-item"><a href="{% url 'posts:list_drafts' %}">Seus rascunhos</a></li>
+                <li class="list-inline-item"><a href="{% url 'posts:autor' autor=user.username %}">Suas postagens</a></li>
             </ul>                           
             <hr>
         </div>
@@ -83,7 +83,7 @@
                     <div class="col-md-4">
                         <form method="GET" action="{% url 'posts:search' %}">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search..." name="q">
+                                <input type="text" class="form-control" placeholder="Buscar..." name="q">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
                                 </div>
@@ -103,14 +103,14 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <i class="fas fa-archive"></i>&nbsp;<b>Archives</b>
+                        <i class="fas fa-archive"></i>&nbsp;<b>Arquivos</b>
                         <ul class="list-unstyled mt-2">
                             {% for date in dates %}
                                 <li>
                                     <a href="{% url 'posts:ym_archive' year=date.year month=date.month %}">{{ date.month|month_name }} {{ date.year }}</a>
                                 </li>
                             {% empty %}
-                                <p>Nothing to display.</p>
+                                <p>Sem nenhuma exibição.</p>
                             {% endfor %}
                         </ul>
                         <i class="fas fa-tag"></i><b>Tags</b>
@@ -126,7 +126,7 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <i class="fas fa-info-circle"></i>&nbsp;<b>About</b>
+                        <i class="fas fa-info-circle"></i>&nbsp;<b>Sobre</b>
                         <p>
                             Vestibulum congue risus ornare, dictum nunc ut, venenatis ex. Fusce rhoncus, tellus quis mattis egestas, nunc justo luctus nibh, ultrices auctor orci orci ac ligula.
                         </p>
@@ -140,8 +140,8 @@
                         {% else %}
                         <div class="text-center">
                             <div class="btn-group btn-group-sm" role="group">
-                                <a href="{% url 'accounts:login' %}?next={{ request.path | urlencode }}" class="btn btn-secondary">Sign In <i class="fas fa-sign-in-alt"></i></a>
-                                <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary">Sign Up <i class="fas fa-user-plus"></i></a>
+                                <a href="{% url 'accounts:login' %}?next={{ request.path | urlencode }}" class="btn btn-secondary">Entrar <i class="fas fa-sign-in-alt"></i></a>
+                                <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary">Registrar <i class="fas fa-user-plus"></i></a>
                             </div>
                         </div>
                         {% endif %}
@@ -149,8 +149,8 @@
                 </div>
                 {% endblock %}
                 <p class="mt-4 mx-0 text-center text-dark">
-                    Copyright &copy; {% now "Y" %} by Author<br>
-                    <a href="{% url 'contact:email-form' %}">Contact</a>&nbsp;<a href="{% url 'feed' %}">Subscribe</a><br>
+                    Copyright &copy; {% now "Y" %} por Autor<br>
+                    <a href="{% url 'contact:email-form' %}">Contato</a>&nbsp;<a href="{% url 'feed' %}">Inscrever-se</a><br>
                     <a href="#">Back to top</a>
                 </p>
             </div>

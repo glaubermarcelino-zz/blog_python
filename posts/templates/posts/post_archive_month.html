@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %} Posts in {{ month|date:"F Y" }} {% endblock %}
+{% block title %} Postado em {{ month|date:"F Y" }} {% endblock %}
 
 {% block content %}
-    <h3>Posts from {{ month|date:"F Y" }}:</h3>
+    <h3>Postagens de {{ month|date:"F Y" }}:</h3>
     <hr>
     <!-- Generic post listing template -->
     {% include 'posts/post_list_generic.html' %}

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Sign Up {% endblock %}
+{% block title %} Registrar {% endblock %}
 
 <!-- Clear navigation -->
 {% block nav-content %} {% endblock %} 
 
 {% block content %}
 <div class="p-4 text-center m-auto w-75">
-    <h3>Sign Up</h3>
+    <h3>Registre-se</h3>
     <hr>
     {% if form.errors %}
         {% for error in form.username.errors %}
@@ -50,7 +50,7 @@
             </div>
         </div>
         
-        <input class="btn btn-primary" type="submit" value="Sign Up" />
+        <input class="btn btn-primary" type="submit" value="Registrar" />
     </form>
 </div>
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 
-{% block title %} Your drafts {% endblock %} 
+{% block title %} Seus rascunhos {% endblock %}
 
 {% block content %}
-<h3>Your drafts:</h3>
+<h3>Seus rascunhos:</h3>
 <hr />
 {% for post in posts %}
 <div class="post">
@@ -18,7 +18,7 @@
 </div>
 <hr />
 {% empty %}
-<p>No drafts.</p>
+<p>Sem rascunhos.</p>
 {% endfor %}
 <!-- PAGINATION -->
 {% include 'posts/pagination.html' %}

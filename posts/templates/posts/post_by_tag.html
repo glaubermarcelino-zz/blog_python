@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %} Posts in tag '{{ tag }}' {% endblock %}
+{% block title %} Postado em tag '{{ tag }}' {% endblock %}
 
 {% block content %}
-    <h3>Posts in tag '{{ tag }}':</h3>
+    <h3>Postado em tag '{{ tag }}':</h3>
     <hr>
     <!-- Generic post listing template -->
     {% include 'posts/post_list_generic.html' %}
