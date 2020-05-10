@@ -15,10 +15,10 @@ class CategoriaListingField(serializers.RelatedField):
         if obj and (len(obj)) == 1:
             return obj.get().id
         else:
-            raise ValidationError(f"Categoria with name {value} does not exist")
+            raise ValidationError(f"Categoria com o nome {value} não existe")
 
 
-class AuthorListingField(serializers.RelatedField):
+class AutorListingField(serializers.RelatedField):
     def to_representation(self, value):
         return f"{value.username.capitalize()}"
 
@@ -43,19 +43,19 @@ class PostListSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name="post-detail", lookup_field="slug"
     )
-    author = AuthorListingField(queryset=User.objects.all())
+    autor = AutorListingField(queryset=User.objects.all())
     published_date = serializers.DateTimeField(format="%a, %d %b  %I:%M %p")
 
     class Meta:
         model = Post
-        fields = ("url", "title", "published_date", "author")
+        fields = ("url", "title", "published_date", "autor")
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name="post-detail", lookup_field="slug"
     )
-    author = AuthorListingField(queryset=User.objects.all())
+    autor = AutorListingField(queryset=User.objects.all())
     categoria = CategoriaListingField(queryset=Categoria.objects.all(), many=True)
     published_date = serializers.DateTimeField(format="%a, %d %b  %I:%M %p")
 
@@ -67,7 +67,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "categoria",
             "content",
             "published_date",
-            "author",
+            "autor",
             "status",
         )
 
@@ -76,7 +76,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name="post-detail", lookup_field="slug"
     )
-    author = serializers.HiddenField(default=CurrentUserDefault())
+    autor = serializers.HiddenField(default=CurrentUserDefault())
     categoria = CategoriaListingField(queryset=Categoria.objects.all(), many=True)
     published_date = serializers.DateTimeField(
         format="%a, %d %b  %I:%M %p", read_only=True
@@ -90,7 +90,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
             "categoria",
             "content",
             "published_date",
-            "author",
+            "autor",
             "status",
         )
 
@@ -111,12 +111,12 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         instance.slug = slugify(instance.title)
 
         categorias = validated_data.get("categoria")
-        # deassociate existing categories from instance
+        # deassociate existing categorias from instance
         instance.categoria.clear()
         for categoria in categorias:
             instance.categoria.add(categoria)
 
-        instance.author = self.context.get("request").user
+        instance.autor = self.context.get("request").user
         instance.content = validated_data.get("content", instance.content)
         instance.save()
         return instance

@@ -23,7 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
     lookup_field = "slug"
 
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ["categoria__name", "author__username", "title", "content"]
+    search_fields = ["categoria__name", "autor__username", "title", "content"]
 
     # pagination_class = PostPageNumberPagination # works fine
 
@@ -36,10 +36,10 @@ class PostViewSet(viewsets.ModelViewSet):
             return PostListSerializer
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(autor=self.request.user)
 
     def perform_update(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(autor=self.request.user)
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):

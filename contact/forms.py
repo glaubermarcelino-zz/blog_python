@@ -20,6 +20,6 @@ class ContactForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name'].label = 'Your name:'
-        self.fields['reply_to'].label = 'Your email:'
-        self.fields['message'].label = 'Message:'
+        self.fields['name'].label = 'Seu nome:'
+        self.fields['reply_to'].label = 'Seu E-mail:'
+        self.fields['message'].label = 'Mensagem:'

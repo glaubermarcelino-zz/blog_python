@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} Search results for '{{ request.GET.q }}' {% endblock %}
+{% block title %} Resultados da busca por '{{ request.GET.q }}' {% endblock %}
 
 {% block content %}
     {% if request.GET.q %}
-        <h3>Search results for '{{ request.GET.q }}':</h3>
+        <h3>Resultados da busca por '{{ request.GET.q }}':</h3>
         <hr>
         <!-- Generic post listing template -->
         {% include 'posts/post_list_generic.html' %}
@@ -14,7 +14,7 @@
         <h3>Search</h3>
         <hr>
         <form method="GET" action="{% url 'posts:search' %}">
-            <input type="text" class="form-control" placeholder="Search posts..." name="q">
+            <input type="text" class="form-control" placeholder="Buscar postagens..." name="q">
         </form>
     {% endif %}
 {% endblock %}

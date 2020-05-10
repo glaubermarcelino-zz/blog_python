@@ -6,8 +6,8 @@ from posts.feeds import LastEntriesFeed
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("accounts.urls", namespace="accounts")),
-    path("contact/", include("contact.urls", namespace="contact")),
+    path("conta/", include("accounts.urls", namespace="accounts")),
+    path("contato/", include("contact.urls", namespace="contact")),
     path("latest/feed/", LastEntriesFeed(), name="feed"),
     path("api/", include("posts.api.urls")),  # REST api
     path("", include("posts.urls")),

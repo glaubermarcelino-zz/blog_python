@@ -13,4 +13,4 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to the owner of the snippet.
-        return obj.author.first_name == request.user.first_name
+        return obj.autor.first_name == request.user.first_name

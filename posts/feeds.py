@@ -3,7 +3,7 @@ from .models import Post
 
 
 class LastEntriesFeed(Feed):
-    title = "Latest posts"
+    title = "Últimos posts"
     link = "/"
     description = "Latest posts"
 

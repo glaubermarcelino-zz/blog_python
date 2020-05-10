@@ -23,19 +23,19 @@ class UserForm(ModelForm):
 
 class SignUpForm(UserCreationForm):
     username = CharField(
-        label="Username",
+        label="Usuário",
         widget=TextInput(attrs={"class": "form-control", "required": True}),
     )
     email = EmailField(
-        label="Email",
+        label="E-mail",
         widget=EmailInput(attrs={"class": "form-control", "required": True}),
     )
     password1 = CharField(
-        label="Password",
+        label="Senha",
         widget=PasswordInput(attrs={"class": "form-control", "required": True}),
     )
     password2 = CharField(
-        label="Confirm password",
+        label="Confirmação de Senha",
         widget=PasswordInput(attrs={"class": "form-control", "required": True}),
     )
 
@@ -47,7 +47,7 @@ class SignUpForm(UserCreationForm):
         username = self.cleaned_data.get("username")
         qs = User.objects.filter(username=username)
         if qs.exists():
-            raise ValidationError("Username already in use!")
+            raise ValidationError("Nome do usuário já existe!")
         return username
 
     def save(self, commit=True):

@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://django-blog-1k4z.herokuapp.com/"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"

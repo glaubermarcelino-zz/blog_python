@@ -23,7 +23,7 @@ def make_slug(instance, new_slug=None):
 class AddPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ("slug", "author")
+        exclude = ("slug", "autor")
         widgets = {
             "title": forms.TextInput(
                 attrs={
